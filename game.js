@@ -12,13 +12,14 @@ const W = 1000;
 const H = 1200;
 let planet;
 let player;
+let camera;
+
 
 function startGame() {
   planet = new Planet();
   player = new Player(cursor.x, cursor.y);
-  // asteroids[0] = new Asteroid(0);
-  // asteroids[1] = new Asteroid(1);
-  // asteroids[2] = new Asteroid(2);
+  camera = new Camera();
+  airCan = new AirCanister();
   
   tick();
 }
@@ -35,14 +36,32 @@ sequenceTimer = 3660
 function update() {
   planet.update();
   player.update();
+  airCan.update(player);
+
+  camera.update();
 
   asteroids.forEach(a => a.update());
   bits.forEach(b => b.update());
   doAsteroidsSequence(asteroids, sequenceTimer);
   sequenceTimer --;
+
+  for (let i = 0; i < bits.length; i++) {
+    const bit = bits[i];
+    if (isOffscreen(bit.x, bit.y, 100)) {
+      bits.splice(i--, 1);
+    }
+  }
+  for (let i = 0; i < asteroids.length; i++) {
+    const asteroid = asteroids[i];
+    if (asteroid.deadTimer == 0) {
+      asteroids.splice(i--, 1);
+    }
+  }
 }
 
 function draw() {
+  ctx.save();
+  camera.moveCtx(ctx);
   ctx.fillStyle = "#000";
   ctx.fillRect(0,0, W, H);
   asteroids.forEach(a => a.draw(ctx))
@@ -51,6 +70,7 @@ function draw() {
   planet.draw(ctx);
 
   player.draw(ctx);
+  airCan.draw(ctx);
 
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
@@ -58,6 +78,9 @@ function draw() {
   ctx.font = "50px sans-serif";
   ctx.fillText(Math.floor(sequenceTimer / 60), W/2, H/2);
 
+  ctx.fillStyle = "cyan";
+  ctx.fillRect(0, 0, player.air, 10)
+  ctx.restore();
 }
 
 startGame();

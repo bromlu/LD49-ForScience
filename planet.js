@@ -2,7 +2,6 @@ planetCanvas = document.createElement("canvas");
 planetCtx = planetCanvas.getContext("2d");
 planetCanvas.width = W;
 planetCanvas.height = H;
-// document.body.appendChild(planetCanvas)
 
 class Planet {
   constructor() {
@@ -10,10 +9,10 @@ class Planet {
 
     planetCtx.clearRect(0, 0, W, H);
     planetCtx.beginPath();
-    planetCtx.arc(W/2, H/2, R, 0, TAU);
+    // planetCtx.arc(W/2, H/2, R, 0, TAU);
+    planetCtx.drawImage(planet1pic, W/2 - R, H/2 - R, 2*R, 2*R)
     planetCtx.fillStyle = this.color
     planetCtx.fill();
-    console.log(planetCanvas);
   }
 
   draw(ctx) {

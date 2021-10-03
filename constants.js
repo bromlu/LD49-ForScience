@@ -30,3 +30,4 @@ function uniRand(min, max) {
 
 bits = [];
 asteroids = [];
+airCan;
