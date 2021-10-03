@@ -81,6 +81,8 @@ class Asteroid {
   }
 
   explode() {
+    crashsound.currentTime = 0;
+    crashsound.play();
     camera.shake();
 
     for (let i = 0; i < this.numBits; i++) {
