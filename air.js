@@ -5,7 +5,7 @@ class AirCanister {
       this.y = uniRand(10, H-10);
     } while (planet.contains(this.x, this.y))
 
-    this.r = 10;
+    this.r = 40;
     this.airTimer = 0;
     this.rotation = 0;
   }
@@ -16,8 +16,7 @@ class AirCanister {
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.rotation);
-    //TODO: replace picture
-    ctx.drawImage(playerpic, -this.r, -this.r, this.r*2, this.r*2);
+    ctx.drawImage(o2pic, -this.r, -this.r, this.r*2, this.r*2);
     ctx.restore();
   }
 
@@ -25,7 +24,7 @@ class AirCanister {
     this.rotation += .01;
     if (this.airTimer > 0) {
       this.airTimer--;
-      player.air += 3;
+      player.air = clamp(0, player.air + 6, 1000);
 
       if (this.airTimer == 1) {
         do {

@@ -4,7 +4,7 @@ class Player {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.maxV = 1.5;
+    this.maxV = 2;
     this.thetaGoal = 0;
     this.theta = 0;
     this.iTimer = 100;
