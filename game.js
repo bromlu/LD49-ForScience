@@ -154,7 +154,10 @@ function draw() {
   if (player.iTimer > 0) ctx.globalAlpha = player.iTimer % 15 < 10 ? .8 : 1; 
   else if (airCan.airTimer > 0) ctx.globalAlpha = airCan.airTimer % 15 < 10 ? .8 : 1; 
   ctx.fillStyle = "cyan";
-  ctx.fillRect(0, 0, player.air-30, 20)
+  ctx.fillRect(0, 0, player.air-30, 20);
+  ctx.fillStyle = "black"
+  ctx.font = "bold 16px sans-serif";
+  ctx.fillText("Oxygen", 40, 12);
   if (player.air < 250) {
     ctx.globalAlpha = player.air % 10 < 3 ? .8 : .6; 
     ctx.fillStyle = "red";
