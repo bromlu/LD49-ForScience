@@ -1,3 +1,9 @@
+const crackpics = [
+  // TODO add more cracks
+  crackpic,
+  crack2pic,
+  crack3pic
+]
 const asteroidInset = 10;
 
 class Asteroid {
@@ -9,7 +15,7 @@ class Asteroid {
     this.numBits = 10;
     this.r = 20;
 
-    this.rotation = 0;
+    this.rotation = TAU * Math.random();
   }
 
   get x() {
@@ -42,8 +48,8 @@ class Asteroid {
       // warning sign
       if (this.lifetime % 30 > 10) { //blink
         ctx.beginPath();
-        const wx = clamp(0, this.x, W-20);
-        const wy = clamp(20, this.y, H-20);
+        const wx = clamp(40, this.x, W-40);
+        const wy = clamp(40, this.y, H-40);
         // ctx.arc(wx, wy, 20, 0, TAU);
         // ctx.fillStyle = "purple";
         // ctx.fill();
@@ -67,10 +73,11 @@ class Asteroid {
       this.deadTimer --;
       if (this.deadTimer == 5) {
         // draw crack
+        const randCrackPic = crackpics[Math.floor(Math.random() * crackpics.length)]
         planetCtx.save();
         planetCtx.translate(W/2, H/2);
         planetCtx.rotate(this.theta + Math.PI / 2);
-        planetCtx.drawImage(crackpic, -R, -R, 2*R, 2*R);
+        planetCtx.drawImage(randCrackPic, -R, -R, 2*R, 2*R);
         planetCtx.restore();
       }
 
@@ -115,9 +122,17 @@ function doAsteroidsSequence(asteroids, timer) {
       asteroids.push(new Asteroid(1));
       break;
     case 50*60:
+      asteroids.push(new Asteroid(1.1));
+      break;
+    // last 10 seconds
+    case 600:
       asteroids.push(new Asteroid(0));
-      asteroids.push(new Asteroid(0.5));
-      asteroids.push(new Asteroid(1));
+      break;
+    case 630:
+      asteroids.push(new Asteroid(.5));
+      break;
+    case 660:
+      asteroids.push(new Asteroid(.7));
       break;
     default:
       break;

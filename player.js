@@ -10,6 +10,8 @@ class Player {
     this.iTimer = 100;
 
     this.air = 1000;
+
+    this.alpha = 1;
   }
 
   update() {
@@ -44,7 +46,7 @@ class Player {
     this.y += dy;
 
     const dTheta = clamp(-.05, this.thetaGoal - this.theta, .05);
-    if (Math.abs(dTheta) > .01) this.theta += dTheta;    
+    if (Math.abs(dTheta) > .01) this.theta += dTheta;
   }
 
   checkForCollision() {
@@ -63,12 +65,13 @@ class Player {
   }
 
   draw(ctx) {
-    if (this.iTimer > 0) ctx.globalAlpha = this.iTimer % 10 < 5 ? .7 : 1; 
+    ctx.globalAlpha = this.alpha;
+    if (this.iTimer > 0) ctx.globalAlpha = this.iTimer % 10 < 5 ? .7 : this.alpha; 
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.theta);
     ctx.drawImage(playerpic, -playerSize/2, -playerSize/2, playerSize, playerSize)
     ctx.restore();
-    ctx.globalAlpha = 1; 
+    ctx.globalAlpha = 1;
   }
 }

@@ -7,15 +7,22 @@ class AirCanister {
 
     this.r = 10;
     this.airTimer = 0;
+    this.rotation = 0;
   }
 
   draw(ctx) {
     if (this.airTimer > 0) return;
-    ctx.fillStyle = "white"
-    ctx.fillRect(this.x, this.y, 10, 10);
+
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
+    //TODO: replace picture
+    ctx.drawImage(playerpic, -this.r, -this.r, this.r*2, this.r*2);
+    ctx.restore();
   }
 
   update(player) {
+    this.rotation += .01;
     if (this.airTimer > 0) {
       this.airTimer--;
       player.air += 3;

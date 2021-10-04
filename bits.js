@@ -30,6 +30,7 @@ class Bit {
   update() {
     this.x += Math.cos(this.theta) * this.force;
     this.y += Math.sin(this.theta) * this.force;
+    this.rotation += .01
   }
 
   contains(x, y, otherR = 0) {
