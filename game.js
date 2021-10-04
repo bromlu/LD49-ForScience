@@ -101,6 +101,11 @@ function update() {
       ctx.fillText("Dying Planet", W/2+2, H/4 + 2);
       ctx.fillStyle = "#689A10";
       ctx.fillText("Dying Planet", W/2+2, H/4 - 2);
+
+      ctx.fillStyle = "yellow";
+      ctx.fillText("Planet Deaths survived: " + wins, W/2, H/2);
+      wins = 0;
+
     }
   } else if (gameState == States.WINNING) {
     winTimer--;
