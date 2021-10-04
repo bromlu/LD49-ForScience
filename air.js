@@ -1,9 +1,10 @@
+const increment = 7;
 class AirCanister {
   constructor() {
     do {
-      this.x = uniRand(10, W-10);
-      this.y = uniRand(10, H-10);
-    } while (planet.contains(this.x, this.y))
+      this.x = uniRand(10, W-50);
+      this.y = uniRand(10, H-50);
+    } while (planet.contains(this.x, this.y, 100))
 
     this.r = 40;
     this.airTimer = 0;
@@ -24,13 +25,14 @@ class AirCanister {
     this.rotation += .01;
     if (this.airTimer > 0) {
       this.airTimer--;
-      player.air = clamp(0, player.air + 6, 1000);
+      player.air = clamp(0, player.air + increment, 1000);
 
       if (this.airTimer == 1) {
         do {
-          this.x = uniRand(10, W-10);
-          this.y = uniRand(10, H-10);
-        } while (planet.contains(this.x, this.y))
+          console.log("spawntry")
+          this.x = uniRand(10, W-50);
+          this.y = uniRand(10, H-50);
+        } while (planet.contains(this.x, this.y, 100))
       }
       return;
     }

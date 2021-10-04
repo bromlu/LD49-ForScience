@@ -61,6 +61,9 @@ class Player {
         return true;
       }
     }
+    if (planet.contains(this.x, this.y, playerSize/2)) {
+      return true;
+    }
     return false;
   }
 

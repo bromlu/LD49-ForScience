@@ -23,10 +23,11 @@ class Planet {
 
   }
 
-  contains(x, y) {
+  contains(x, y, padding = 0) {
     const dx = W / 2 - x;
     const dy = H / 2 - y;
     const distsq = dx * dx + dy * dy;
-    return distsq <= R * R;
+    let r = R + padding;
+    return distsq <= r * r;
   }
 }

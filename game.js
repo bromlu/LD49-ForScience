@@ -107,6 +107,7 @@ function draw() {
   ctx.fillStyle = "cyan";
 
   if (player.iTimer > 0) ctx.globalAlpha = player.iTimer % 15 < 10 ? .8 : 1; 
+  else if (airCan.airTimer > 0) ctx.globalAlpha = airCan.airTimer % 15 < 10 ? .8 : 1; 
   ctx.fillRect(0, 0, player.air, 20)
   ctx.globalAlpha = 1;
 
