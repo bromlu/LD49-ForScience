@@ -44,13 +44,13 @@ class Camera {
 
     let dx = this.xAnchor - this.x;
     let dy = this.yAnchor - this.y;
-    if (Math.abs(dx) > 2000) this.x += clamp(-2, dx, 2);
+    if (Math.abs(dx) > 20) this.x += clamp(-20, dx, 20);
     else this.x = this.xAnchor;
-    if (Math.abs(dy) > 2000) this.y += clamp(-2, dy, 2);
+    if (Math.abs(dy) > 20) this.y += clamp(-20, dy, 20);
     else this.y = this.yAnchor;
     
     let ds = this.scaleGoal - this.scale;
-    if (Math.abs(this.scale - this.scaleGoal) > .01) this.scale += clamp(-.02, ds, .02);
+    if (Math.abs(this.scale - this.scaleGoal) > .03) this.scale += clamp(-.03, ds, .03);
     else {
       this.scale = this.scaleGoal;
       if (this.zoomCallback) {

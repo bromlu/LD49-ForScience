@@ -8,7 +8,7 @@ class Bit {
     this.y = y;
     this.theta = theta;
     this.force = force;
-    this.r = r + normRand(8);
+    this.r = r + normRand(5);
     this.pic = debrisPics[Math.floor(Math.random() * debrisPics.length)];
     this.rotation = Math.random() * TAU;
   }

@@ -1,5 +1,11 @@
 const closeThreshold = 5;
 const playerSize = 50;
+
+hurtsounds = [
+  hurt1sound,
+  hurt2sound,
+  hurt3sound
+]
 class Player {
   constructor(x, y) {
     this.x = x;
@@ -7,9 +13,9 @@ class Player {
     this.maxV = 2;
     this.thetaGoal = 0;
     this.theta = 0;
-    this.iTimer = 100;
+    this.iTimer = 70;
 
-    this.air = 1000;
+    this.air = 1030;
 
     this.alpha = 1;
   }
@@ -19,9 +25,12 @@ class Player {
     else {
       const collided = this.checkForCollision();
       if (collided) {
-        this.iTimer = 100;
+        this.iTimer = 70;
         this.air -= 200;
         camera.shake();
+        const sound = hurtsounds[Math.floor(Math.random() * hurtsounds.length)]
+        sound.currentTime = 0;
+        sound.play();
       }
       this.air--;
     }
@@ -77,4 +86,12 @@ class Player {
     ctx.restore();
     ctx.globalAlpha = 1;
   }
+  drawWin(ctx) {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.theta);
+    ctx.drawImage(playerwinpic, -playerSize/2, -playerSize/2, playerSize, playerSize)
+    ctx.restore();
+  }
+
 }

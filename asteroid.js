@@ -1,5 +1,4 @@
 const crackpics = [
-  // TODO add more cracks
   crackpic,
   crack2pic,
   crack3pic
@@ -12,7 +11,7 @@ class Asteroid {
     this.lifetime = 0;
     this.theta = theta + asteroidAngleOffset;
     this.deadTimer = 10;
-    this.numBits = 10;
+    this.numBits = 8;
     this.r = 20;
 
     this.rotation = TAU * Math.random();
@@ -92,16 +91,16 @@ class Asteroid {
     crashsound.play();
     camera.shake();
 
-    for (let i = 0; i < this.numBits; i++) {
-      const theta = this.theta + normRand(0.5)
-      bits.push(new Bit(this.x, this.y, theta, 4 + normRand(1)));
+    for (let i = 0; i < this.numBits / 2; i++) {
+      const theta = this.theta + uniRand(-.3,.3);
+      bits.push(new Bit(this.x, this.y, theta,  uniRand(1,4)));
     }
 
     const oppX = this.x - Math.cos(this.theta) * 1.5 * R
     const oppY = this.y - Math.sin(this.theta) * 1.5 * R
     for (let i = 0; i < this.numBits; i++) {
       const theta = this.theta + Math.PI + normRand(1)
-      bits.push(new Bit(oppX, oppY, theta, 2 + uniRand(1, 6)));
+      bits.push(new Bit(oppX, oppY, theta, 1 + uniRand(0, 7)));
     }
   }
   contains(x, y, otherR = 0) {
@@ -115,24 +114,122 @@ class Asteroid {
 
 function doAsteroidsSequence(asteroids, timer) {
   switch (timer) {
+
+    // 60-50
     case 60*60:
-      asteroids.push(new Asteroid(2));
+      asteroids.push(new Asteroid(3));
       break;
     case 55*60:
-      asteroids.push(new Asteroid(1));
+      asteroids.push(new Asteroid(2));
       break;
     case 50*60:
-      asteroids.push(new Asteroid(1.1));
+      asteroids.push(new Asteroid(.6));
       break;
-    // last 10 seconds
-    case 600:
+
+    // 50-40
+    case 50*60:
+      asteroidAngleOffset = TAU * Math.random();
+      asteroids.push(new Asteroid(.6));
+      break;
+    case 48*60:
+      asteroids.push(new Asteroid(3));
+      break;
+    case 46*60:
+      asteroids.push(new Asteroid(2));
+      break;
+    case 44*60:
+      asteroids.push(new Asteroid(1.2));
+      break;
+    case 43*60:
+      asteroids.push(new Asteroid(5));
+        break;
+    // 40-30
+    case 40*60:
+      asteroidAngleOffset = TAU * Math.random();
       asteroids.push(new Asteroid(0));
       break;
-    case 630:
+    case 39*60:
+      asteroids.push(new Asteroid(5));
+      break;
+    case 38*60:
+      asteroids.push(new Asteroid(6));
+      break;
+    case 37*60:
+      asteroids.push(new Asteroid(4));
+      break;
+    case 33*60:
+      asteroids.push(new Asteroid(1));
+      asteroids.push(new Asteroid(2));
+      break;
+    case 32*60:
+      asteroids.push(new Asteroid(1.5));
+      asteroids.push(new Asteroid(2.5));
+      break;
+    case 31*60:
+      asteroids.push(new Asteroid(4));
+      asteroids.push(new Asteroid(5.5));
+        break;
+    // 30-20
+    case 26*60:
+      asteroidAngleOffset = TAU * Math.random();
+      asteroids.push(new Asteroid(1.5));
+      break;
+    case 1555:
+      asteroids.push(new Asteroid(3));
+      break;
+    case 1440:
+      asteroids.push(new Asteroid(4.5));
+    case 1400:
+      asteroids.push(new Asteroid(4.1));
+      asteroids.push(new Asteroid(1));
+      break;
+    case 1320:
+      asteroids.push(new Asteroid(4));
+      break;
+    case 1315:
+      asteroids.push(new Asteroid(3.5));
+      break;
+    // 20 - 10
+    case 1200:
+    case 1140:
+    case 1080:
+    case 1020:
+    case 960:
+      asteroidAngleOffset = TAU * Math.random();
+      asteroids.push(new Asteroid(0));
+    break;
+
+
+    // last 10 seconds
+    case 600:
+      asteroidAngleOffset = TAU * Math.random();
+      asteroids.push(new Asteroid(0));
+      break;
+    case 595:
       asteroids.push(new Asteroid(.5));
       break;
-    case 660:
+    case 590:
+      asteroids.push(new Asteroid(1));
+      break;
+    case 575:
       asteroids.push(new Asteroid(.7));
+      break;
+    case 572:
+      asteroids.push(new Asteroid(.4));
+      break;
+    case 570:
+      asteroids.push(new Asteroid(.2));
+      break;
+    case 500:
+      asteroids.push(new Asteroid(0.1));
+      break;
+    case 470:
+      asteroids.push(new Asteroid(2));
+      asteroids.push(new Asteroid(4.5));
+      break;
+    case 450:
+      asteroids.push(new Asteroid(4));
+      asteroids.push(new Asteroid(2.5));
       break;
     default:
       break;

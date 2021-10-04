@@ -5,14 +5,25 @@ planetCanvas.height = H;
 
 class Planet {
   constructor() {
-    this.color = "red";
 
     planetCtx.clearRect(0, 0, W, H);
-    planetCtx.beginPath();
-    // planetCtx.arc(W/2, H/2, R, 0, TAU);
-    planetCtx.drawImage(planet1pic, W/2 - R, H/2 - R, 2*R, 2*R)
-    planetCtx.fillStyle = this.color
-    planetCtx.fill();
+
+    planetCtx.save();
+    planetCtx.translate(W/2, H/2);
+    planetCtx.rotate(TAU * Math.random());
+    planetCtx.drawImage(planet1pic, -R, -R, 2*R, 2*R);
+    planetCtx.restore();
+    
+
+    for (let i = 0; i < wins && i < 4; i++) {
+      planetCtx.globalCompositeOperation = "source-atop"
+      planetCtx.globalAlpha = .3;
+      planetCtx.fillStyle = Math.random() < .5 ? "red" : "blue";
+      planetCtx.fillRect(0,0,W,H);
+      planetCtx.globalAlpha = 1;
+      planetCtx.globalCompositeOperation = "source-over"
+
+    }
   }
 
   draw(ctx) {
