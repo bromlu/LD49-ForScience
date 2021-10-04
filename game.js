@@ -100,7 +100,7 @@ function update() {
       ctx.fillStyle = "#9B7653";
       ctx.fillText("Dying Planet", W/2+2, H/4 + 2);
       ctx.fillStyle = "#689A10";
-      ctx.fillText("Dying Planet", W/2+4, H/4 - 4);
+      ctx.fillText("Dying Planet", W/2+2, H/4 - 2);
     }
   } else if (gameState == States.WINNING) {
     winTimer--;
